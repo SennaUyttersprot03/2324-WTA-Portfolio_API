@@ -1,5 +1,5 @@
-import { GraphQLHTTP } from 'https://deno.land/x/gql@1.2.4/mod.ts'
-import { makeExecutableSchema } from 'npm:@graphql-tools/schema@10.0.0'
+import { GraphQLHTTP } from "https://deno.land/x/gql@1.2.4/mod.ts";
+import { makeExecutableSchema } from "npm:@graphql-tools/schema@10.0.0";
 import { typeDefs } from "./graphql/Schema.ts";
 import { resolvers } from "./graphql/Resolvers.ts";
 
