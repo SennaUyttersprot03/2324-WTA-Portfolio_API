@@ -1,9 +1,12 @@
-import Comment from "../types/Comment.tsx";
+import { CommentBody } from "../types/Comment.tsx";
 import { isFilled } from "./HelperFunctions.tsx";
 
-export const validateComment = (comment: Comment) => {
-  const errors = {} as Comment;
+export const validateComment = (comment: CommentBody) => {
+  const errors: { [key: string]: string } = {};
 
+  if (!isFilled(comment.postId)) {
+    errors.postId = "PostId is required";
+  }
   if (!isFilled(comment.author)) {
     errors.author = "Author is required";
   }

@@ -9,6 +9,7 @@ export const typeDefs = gql`
   type Mutation {
     createPost(title: String!, message: String!): Post!
     deletePost(id: ID!): String!
+    addComment(postId: ID!, author: String! message: String!): Post!
   }
 
   scalar Date
@@ -22,7 +23,7 @@ export const typeDefs = gql`
   }
 
   type Comment {
-    id: ID!
+    author: String!
     message: String!
     createdAt: Date!
   }
