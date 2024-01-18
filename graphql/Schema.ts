@@ -2,7 +2,7 @@ import { gql } from "https://deno.land/x/oak_graphql@0.6.4/mod.ts";
 
 export const typeDefs = gql`
   type Query {
-    posts: [Post]
+    posts(term: String): [Post]
     postById(id: ID!): Post
   }
 

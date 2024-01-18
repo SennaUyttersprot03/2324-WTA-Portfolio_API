@@ -10,7 +10,7 @@ import { CommentBody } from "../types/Comment.tsx";
 
 export const resolvers = {
   Query: {
-    posts: () => getAllPosts(),
+    posts: (_parent: Post, { term }: { term: string }) => getAllPosts(term),
     postById: (_parent: Post, { id }: { id: string }) => postById(id),
   },
   Mutation: {

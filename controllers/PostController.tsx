@@ -6,12 +6,23 @@ import { GQLError } from "https://deno.land/x/oak_graphql@0.6.4/mod.ts";
 
 const kv = await Deno.openKv();
 
-const getAllPosts = async () => {
+const getAllPosts = async (term: string) => {
   const records = kv.list({ prefix: ["post"] });
   const posts: Post[] = [];
   for await (const record of records) {
     posts.push(record.value as Post);
   }
+
+  if (term) {
+    term = term.toLowerCase();
+    const filteredPosts = posts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(term) ||
+        post.message.toLowerCase().includes(term),
+    );
+    return filteredPosts;
+  }
+
   return posts;
 };
 

@@ -10,8 +10,8 @@ const GraphQLService = await applyGraphQL<Router>({
   Router,
   typeDefs: typeDefs,
   resolvers: resolvers,
-  usePlayground: true
-})
+  usePlayground: true,
+});
 
 app.use(CORS());
 app.use(GraphQLService.routes(), GraphQLService.allowedMethods());
