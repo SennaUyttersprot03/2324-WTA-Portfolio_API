@@ -27,8 +27,8 @@ const createPost = async (postBody: PostBody) => {
   const postKey = ["post", post.id];
   await kv.set(postKey, post);
 
-  // // const url = Deno.env.get("JAMSTACK_URL") || "";
-  // // await fetch(url);
+  const url = Deno.env.get("JAMSTACK_URL") as string;
+  await fetch(url);
 
   return post;
 };
@@ -46,8 +46,8 @@ const postById = async (id: string) => {
 const deletePostById = async (id: string) => {
   await kv.delete(["post", Number.parseInt(id)]);
 
-  // const url = Deno.env.get("JAMSTACK_URL") || "";
-  // await fetch(url);
+  const url = Deno.env.get("JAMSTACK_URL") as string;
+  await fetch(url);
 
   return JSON.stringify({ message: "Post successfully deleted" });
 };

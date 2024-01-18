@@ -1,4 +1,4 @@
-import Comment from "./Comment.tsx";
+import { Comment } from "./Comment.tsx";
 
 export interface Post {
   id: number;
