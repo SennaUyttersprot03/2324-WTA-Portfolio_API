@@ -1,9 +1,9 @@
+import { GQLError } from "https://deno.land/x/oak_graphql@0.6.4/mod.ts";
 import { CommentBody } from "../types/Comment.tsx";
 import { Comment } from "../types/Comment.tsx";
 import { Post } from "../types/Post.tsx";
 import { validateComment } from "../validators/CommentValidator.tsx";
 import { hasErrors } from "../validators/HelperFunctions.tsx";
-import { GraphQLError } from "https://deno.land/x/graphql_deno@v15.0.0/mod.ts";
 
 const kv = await Deno.openKv();
 
@@ -11,7 +11,7 @@ const addComment = async (commentBody: CommentBody) => {
   const errors = validateComment(commentBody);
 
   if (hasErrors(errors)) {
-    throw new GraphQLError(JSON.stringify(errors));
+    throw new GQLError(JSON.stringify(errors));
   }
 
   const record = await kv.get(["post", Number.parseInt(commentBody.postId)]);

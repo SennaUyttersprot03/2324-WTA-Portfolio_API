@@ -1,4 +1,4 @@
-import { gql } from "https://deno.land/x/graphql_tag@0.1.2/mod.ts";
+import { gql } from "https://deno.land/x/oak_graphql@0.6.4/mod.ts";
 
 export const typeDefs = gql`
   type Query {

@@ -2,7 +2,7 @@
 import { Post, PostBody } from "../types/Post.tsx";
 import { validatePost } from "../validators/PostValidator.tsx";
 import { hasErrors } from "../validators/HelperFunctions.tsx";
-import { GraphQLError } from "https://deno.land/x/graphql_deno@v15.0.0/mod.ts";
+import { GQLError } from "https://deno.land/x/oak_graphql@0.6.4/mod.ts";
 
 const kv = await Deno.openKv();
 
@@ -19,7 +19,7 @@ const createPost = async (postBody: PostBody) => {
   const errors = validatePost(postBody);
 
   if (hasErrors(errors)) {
-    throw new GraphQLError(JSON.stringify(errors));
+    throw new GQLError(JSON.stringify(errors));
   }
 
   const post = { ...postBody, id: Date.now(), createdAt: new Date() };
@@ -38,7 +38,7 @@ const postById = async (id: string) => {
   const post = record.value as Post;
 
   if (!post) {
-    throw new GraphQLError(JSON.stringify({ message: "Post not found" }));
+    throw new GQLError(JSON.stringify({ message: "Post not found" }));
   }
   return post;
 };
